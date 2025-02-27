@@ -1,6 +1,6 @@
 'use client';
 import { clsx } from 'clsx';
-import { ButtonProps } from '../lib/definitions';
+import { ButtonProps } from '@/app/lib/definitions';
 
 const inactiveClasses = {
   text: 'text-slate-800 cursor-not-allowed',
@@ -12,7 +12,7 @@ const otherActiveClasses = {
   text: 'text-white cursor-pointer',
 };
 
-export function Button({
+export default function Button({
   isActive,
   activeColors,
   icon,

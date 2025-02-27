@@ -1,8 +1,12 @@
 'use client';
 import { useReducer } from 'react';
-import { Button } from './ui/Button';
-import { reducer } from './lib/reducer';
-import { blueActiveColors, greenActiveColors, redActiveColors } from './lib/colors';
+import Button from '@/app/ui/Button';
+import { reducer } from '@/app/lib/reducer';
+import {
+  blueActiveColors,
+  greenActiveColors,
+  redActiveColors,
+} from '@/app/lib/colors';
 import { RiMoneyDollarCircleFill } from 'react-icons/ri';
 import { PiHandDepositFill, PiHandWithdraw } from 'react-icons/pi';
 import { FaRegQuestionCircle } from 'react-icons/fa';
