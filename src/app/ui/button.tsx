@@ -1,19 +1,6 @@
 'use client';
-
-import { RiMoneyDollarCircleFill } from 'react-icons/ri';
 import { clsx } from 'clsx';
-
-type ButtonProps = {
-  isActive: boolean;
-  activeColors: ActiveColors;
-  buttonText: string;
-  handleClick: () => void;
-};
-
-type ActiveColors = {
-  dark: string;
-  light: string;
-};
+import { ButtonProps } from '../lib/definitions';
 
 const inactiveClasses = {
   text: 'text-slate-800 cursor-not-allowed',
@@ -22,16 +9,19 @@ const inactiveClasses = {
 };
 
 const otherActiveClasses = {
-  text: 'text-white cursor-pointer'
-}
+  text: 'text-white cursor-pointer',
+};
 
 export default function Button({
   isActive,
   activeColors,
+  icon,
   buttonText,
   handleClick,
 }: ButtonProps) {
-  const colorClass = isActive ? {...activeColors, ...otherActiveClasses} : inactiveClasses;
+  const colorClass = isActive
+    ? { ...activeColors, ...otherActiveClasses }
+    : inactiveClasses;
   return (
     <button
       aria-label={buttonText}
@@ -43,7 +33,7 @@ export default function Button({
       disabled={!isActive}
     >
       <div className={clsx('p-5 flex', colorClass.dark)}>
-        <RiMoneyDollarCircleFill className="self-center text-4xl" />
+        <span className="self-center text-4xl">{icon}</span>
       </div>
       <div className={clsx('flex w-72 justify-center', colorClass.light)}>
         <div className="self-center">{buttonText}</div>
