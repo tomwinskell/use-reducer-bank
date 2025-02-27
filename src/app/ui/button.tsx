@@ -11,16 +11,19 @@ type ButtonProps = {
 };
 
 type ActiveColors = {
-  text: string;
   dark: string;
   light: string;
 };
 
-const inactiveColors = {
-  text: 'text-white',
-  dark: 'bg-blue-600',
-  light: 'bg-blue-400',
+const inactiveClasses = {
+  text: 'text-slate-800 cursor-not-allowed',
+  dark: 'bg-slate-600',
+  light: 'bg-slate-400',
 };
+
+const otherActiveClasses = {
+  text: 'text-white cursor-pointer'
+}
 
 export default function Button({
   isActive,
@@ -28,7 +31,7 @@ export default function Button({
   buttonText,
   handleClick,
 }: ButtonProps) {
-  const colorClass = isActive ? activeColors : inactiveColors;
+  const colorClass = isActive ? {...activeColors, ...otherActiveClasses} : inactiveClasses;
   return (
     <button
       aria-label={buttonText}
@@ -37,6 +40,7 @@ export default function Button({
         colorClass.text
       )}
       onClick={() => handleClick()}
+      disabled={!isActive}
     >
       <div className={clsx('p-5 flex', colorClass.dark)}>
         <RiMoneyDollarCircleFill className="self-center text-4xl" />

@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import Button from './ui/button';
+import { useReducer } from 'react';
+import Button from './ui/Button';
+import { blueActiveColors, greenActiveColors, redActiveColors } from './colors';
+import { reducer } from './reducer';
 
 export default function Home() {
-  const [accountActive, setAccountActive] = useState(false);
-  const [balance, setBalance] = useState(500);
-  const [loan, setLoan] = useState(0);
-
-  const blueActiveColors = {
-    text: 'text-slate-800',
-    dark: 'bg-slate-600',
-    light: 'bg-slate-400',
+  const initialState = {
+    active: false,
+    balance: 500,
+    loan: 0,
   };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
@@ -22,10 +22,10 @@ export default function Home() {
         </div>
 
         <p className="text-center">
-          {accountActive ? (
+          {state.active ? (
             <>
-              <span className="pe-3">Balance ${balance}</span>
-              <span className="ps-3">Loan ${loan}</span>
+              <span className="pe-3">Balance ${state.balance}</span>
+              <span className="ps-3">Loan ${state.loan}</span>
             </>
           ) : (
             'Please open an account.'
@@ -36,8 +36,38 @@ export default function Home() {
         <Button
           buttonText="Open Account"
           activeColors={blueActiveColors}
-          handleClick={() => setAccountActive(true)}
-          isActive={accountActive}
+          handleClick={() => dispatch({ type: 'activate_account' })}
+          isActive={!state.active}
+        />
+        <Button
+          buttonText="Deposit $100"
+          activeColors={greenActiveColors}
+          handleClick={() => dispatch({ type: 'deposit' })}
+          isActive={state.active}
+        />
+        <Button
+          buttonText="Withdraw $50"
+          activeColors={greenActiveColors}
+          handleClick={() => dispatch({ type: 'withdraw' })}
+          isActive={state.active}
+        />
+        <Button
+          buttonText="Request $5000 loan"
+          activeColors={greenActiveColors}
+          handleClick={() => dispatch({ type: 'request_loan' })}
+          isActive={state.active}
+        />
+        <Button
+          buttonText="Repay loan"
+          activeColors={greenActiveColors}
+          handleClick={() => dispatch({ type: 'repay_loan' })}
+          isActive={state.balance > state.loan && state.loan !== 0}
+        />
+        <Button
+          buttonText="Close Account"
+          activeColors={redActiveColors}
+          handleClick={() => dispatch({ type: 'deactivate_account' })}
+          isActive={state.active && state.loan === 0}
         />
       </main>
     </div>
