@@ -1,6 +1,6 @@
 'use client';
 import { useReducer } from 'react';
-import Button from '@/app/ui/Button';
+import Button from '@/app/ui/ButtonEl';
 import { reducer } from '@/app/lib/reducer';
 import {
   blueActiveColors,
