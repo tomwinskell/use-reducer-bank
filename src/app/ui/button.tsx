@@ -12,7 +12,7 @@ const otherActiveClasses = {
   text: 'text-white cursor-pointer',
 };
 
-export default function Button({
+export function Button({
   isActive,
   activeColors,
   icon,

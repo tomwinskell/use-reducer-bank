@@ -1,6 +1,6 @@
 'use client';
 import { useReducer } from 'react';
-import Button from './ui/Button';
+import { Button } from './ui/Button';
 import { reducer } from './lib/reducer';
 import { blueActiveColors, greenActiveColors, redActiveColors } from './lib/colors';
 import { RiMoneyDollarCircleFill } from 'react-icons/ri';
